@@ -1,6 +1,12 @@
 // core
 import ENV from 'core/env';
 
+// utils
+import { init2D, resize2D } from 'utils/canvas';
+
+// libs
+import { TweenLite }        from 'gsap';
+
 
 export default class App
 {
@@ -13,11 +19,22 @@ export default class App
         this._height     = 0.0;
 
         this._pixelRatio = 0.0;
+
+        // --
+
+        this._mouseX     = 0.0;
+        this._mouseY     = 0.0;
     }
 
     setup()
     {
         this._element = document.getElementById('app');
+
+        // set up canvas
+        this._context = init2D();
+        this._element.appendChild(this._context.canvas);
+
+        // set up events
         this._setupEvents();
     }
 
@@ -48,6 +65,14 @@ export default class App
         this._height     = window.innerHeight;
 
         this._pixelRatio = window.devicePixelRatio;
+
+
+        // resize other values ...
+
+
+        // resize canvas
+        resize2D(this._context, this._width, this._height, 2.0);
+
     }
 
     scroll() {}
@@ -57,7 +82,12 @@ export default class App
 
     update()
     {
+        this._render();
+    }
 
+    _render()
+    {
+        // render ...
     }
 
 
@@ -65,7 +95,8 @@ export default class App
 
     _move( x, y )
     {
-
+        this._mouseX = x;
+        this._mouseY = y;
     }
 
     _down( x, y )
