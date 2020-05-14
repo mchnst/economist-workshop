@@ -2,10 +2,11 @@
 import ENV from 'core/env';
 
 // utils
+import Expander from 'utils/expander';
 import { init2D, resize2D } from 'utils/canvas';
 
 // libs
-import { TweenLite }        from 'gsap';
+import { TweenLite } from 'gsap';
 
 
 export default class App
@@ -30,9 +31,13 @@ export default class App
     {
         this._element = document.getElementById('app');
 
+        // set up scroll
+        this._expander = new Expander(this._element);
+        this._expander.expand(10000.0);
+
         // set up canvas
         this._context = init2D();
-        this._element.appendChild(this._context.canvas);
+        this._element.querySelector('.background').appendChild(this._context.canvas);
 
         // set up events
         this._setupEvents();
@@ -61,10 +66,10 @@ export default class App
 
     resize()
     {
-        this._width      = document.body.clientWidth;
-        this._height     = window.innerHeight;
+        this._width       = document.body.clientWidth;
+        this._height      = window.innerHeight;
 
-        this._pixelRatio = window.devicePixelRatio;
+        this._pixelRatio  = window.devicePixelRatio;
 
 
         // resize other values ...
@@ -73,9 +78,16 @@ export default class App
         // resize canvas
         resize2D(this._context, this._width, this._height, 2.0);
 
+        // scroll
+        this._totalScroll = 10000.0 - this._height;
+        this.scroll();
     }
 
-    scroll() {}
+    scroll()
+    {
+        this._scroll = window.pageYOffset / this._totalScroll;
+        console.log('Scroll:', this._scroll);
+    }
 
 
     // UPDATE ------------------------------------------------------------------
