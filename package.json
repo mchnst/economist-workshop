@@ -26,7 +26,7 @@
     "browserify": "^16.5.1",
     "browserify-incremental": "^3.1.1",
     "dat.gui": "^0.7.7",
-    "gsap": "^1.20.4",
+    "gsap": "^3.6.0",
     "gulp": "^4.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^3.9.2",
