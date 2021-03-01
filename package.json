@@ -45,7 +45,7 @@
     "ios-inner-height": "^1.0.3",
     "mobile-detect": "^1.4.1",
     "postprocessing": "^6.13.3",
-    "three": "^0.115.0",
+    "three": "^0.125.0",
     "three-gltf-loader": "^1.111.0",
     "three-orbit-controls": "^82.1.0",
     "vinyl-source-stream": "^2.0.0"
